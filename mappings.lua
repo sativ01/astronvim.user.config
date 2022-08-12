@@ -10,7 +10,7 @@ return {
     ["<C-s>"] = false,
     ["<C-\\>"] = false,
     -- return default to default
-    Y = {"Y"},
+    Y = { "Y" },
     -- ["{"] = { "{" },
     -- ["}"] = { "}" },
     -- ["[["] = { "]]" },
@@ -22,20 +22,25 @@ return {
     ["<C-h>"] = { function() sm_sp.resize_left(4) end, desc = "Resize split left" },
     ["<C-l>"] = { function() sm_sp.resize_right(4) end, desc = "Resize split right" },
     -- Standard operations
-    U = {":redo<cr>", desc = "Redo"},
-    [";;"] = {'<Esc>A;<Esc>'},
-    [",,"] = {'<Esc>A,<Esc>'},
-    ["<leader>u"] = {"<cmd>nohlsearch<cr>", desc = "No Highlight"},
+    U = { ":redo<cr>", desc = "Redo" },
+    [";;"] = { '<Esc>A;<Esc>' },
+    [",,"] = { '<Esc>A,<Esc>' },
+    ["<leader>u"] = { "<cmd>nohlsearch<cr>", desc = "No Highlight" },
 
     -- window navigation
     ["<leader>h"] = { function() sm_sp.move_cursor_left() end, desc = "Move to window on the left" },
     ["<leader>j"] = { function() sm_sp.move_cursor_down() end, desc = "Move to below window" },
     ["<leader>k"] = { function() sm_sp.move_cursor_up() end, desc = "Move to above window" },
     ["<leader>l"] = { function() sm_sp.move_cursor_right() end, desc = "Move to window on the right" },
-    ["<c-w>"] = {"<cmd>close<cr>", desc = "close window"},
+    ["<c-w>"] = { "<cmd>close<cr>", desc = "close window" },
     -- telescope extra search commands
-    ["<leader>bf"]= { function() require("telescope.builtin").current_buffer_fuzzy_find() end, desc = "Fuzzy search current file" },
+    ["<leader>gm"] = { function() require("telescope.builtin").git_files({git_command = {"git", "ls-files", "--modified"}}) end, desc = "Git list modified files" },
+    ["<leader>bf"] = { function() require("telescope.builtin").current_buffer_fuzzy_find() end,
+      desc = "Fuzzy search current file" },
     ["<leader>ss"] = { function() require("telescope.builtin").grep_string() end, desc = "Search word under cursor" },
+    ["<leader>st"] = { function() require("telescope.builtin").colorscheme({ enable_preview = true }) end,
+      desc = "Search and apply themes" },
+    ["<leader>sp"] = { function() require("telescope.builtin").builtin() end, desc = "Search builtin telescope pickers" },
     -- navigating wrapped lines
     j = { "gj", desc = "Navigate down" },
     k = { "gk", desc = "Navigate down" },

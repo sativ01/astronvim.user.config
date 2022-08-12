@@ -95,8 +95,8 @@ local config = {
       -- },
     },
     aerial = {
-      min_width = {60, 0.25},
-      on_attach = function () end,
+      min_width = { 60, 0.25 },
+      on_attach = function() end,
     },
     bufferline = {
       options = {
@@ -115,13 +115,34 @@ local config = {
       }
     },
     telescope = {
+      extensions = {
+        fzf = {
+          fuzzy = true, -- false will only do exact matching
+          override_generic_sorter = true, -- override the generic sorter
+          override_file_sorter = true, -- override the file sorter
+          case_mode = 'respect_case', -- or "ignore_case" or "respect_case"
+          -- the default case_mode is "smart_case"
+        },
+      },
       defaults = {
         prompt_prefix = "   ",
+        layout_strategy = "vertical",
         layout_config = {
           horizontal = {
-            preview_width = 0.4
-          }
-        }
+            prompt_position = "top",
+            preview_width = 0.55,
+            results_width = 0.8,
+          },
+          vertical = {
+            prompt_position = "top",
+            mirror = true,
+            preview_height = 0.35,
+            preview_cutoff = 1,
+          },
+          width = 0.80,
+          height = 0.80,
+          preview_cutoff = 120,
+        },
       }
     },
     -- All other entries override the setup() call for default plugins
@@ -160,6 +181,9 @@ local config = {
     packer = {
       compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",
     },
+  },
+  ["sumneko_lua"] = {
+    on_attach = function() end,
   },
 
   -- LuaSnip Options
