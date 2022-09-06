@@ -81,6 +81,11 @@ local config = {
       ["rafamadriz/neon"] = {}, -- Neon theme
       ["edluffy/hologram.nvim"] = {},
       ["akinsho/toggleterm.nvim"] = { disable = true },
+      ["kdheepak/lazygit.nvim"] = {},
+      ["mfussenegger/nvim-dap"] = {},
+      ["rcarriga/nvim-dap-ui"] = {},
+      ["nvim-telescope/telescope-dap.nvim"] = {},
+      ["sindrets/diffview.nvim"] = {},
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
 
@@ -113,6 +118,13 @@ local config = {
           hide_dotfiles = false,
         }
       }
+    },
+
+    ["mfussenegger/nvim-dap"] = {
+      config = require "user.plugins.dap.config"
+    },
+    ["rcarriga/nvim-dap-ui"] = {
+      config = require "user.plugins.dap-ui.config"
     },
     telescope = {
       extensions = {

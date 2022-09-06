@@ -33,6 +33,8 @@ return {
     ["<leader>k"] = { function() sm_sp.move_cursor_up() end, desc = "Move to above window" },
     ["<leader>l"] = { function() sm_sp.move_cursor_right() end, desc = "Move to window on the right" },
     ["<c-w>"] = { "<cmd>close<cr>", desc = "close window" },
+    -- open lazygit
+    ["<leader>gg"] = {"<cmd>LazyGit<cr>", desc = "Open Lazygit"},
     -- telescope extra search commands
     ["<leader>gm"] = { function() require("telescope.builtin").git_files({git_command = {"git", "ls-files", "--modified"}}) end, desc = "Git list modified files" },
     ["<leader>bf"] = { function() require("telescope.builtin").current_buffer_fuzzy_find() end,
@@ -55,6 +57,13 @@ return {
     ["<c-right>"] = { "<cmd>STSSwapDownNormal<cr>", desc = "Swap next tree-sitter object" },
     ["<c-up>"] = { "<cmd>STSSwapUpNormal<cr>", desc = "Swap previous tree-sitter object" },
     ["<c-left>"] = { "<cmd>STSSwapUpNormal<cr>", desc = "Swap previous tree-sitter object" },
+    -- Debugging
+    ["<leader>db"] = {"<cmd>DapToggleBreakpoint<cr>", desc="Debugger. Toggle Breakpoint"},
+    ["<leader>dc"] = {"<cmd>DapContinue<cr>", desc="Debugger. Start or Continue"},
+    ["<leader>dt"] = {"<cmd>DapTerminate<cr>", desc="Debugger. Stop debugging"},
+    ["<leader>di"] = {"<cmd>DapStepInto<cr>", desc="Debugger. Step Into"},
+    ["<leader>do"] = {"<cmd>DapStepOver<cr>", desc="Debugger. Step Over"},
+    ["<leader>dx"] = {"<cmd>DapStepOut<cr>", desc="Debugger. Step Out"},
   },
   i = {
     -- type template string
