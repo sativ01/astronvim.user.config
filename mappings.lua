@@ -64,6 +64,10 @@ return {
     ["<leader>di"] = {"<cmd>DapStepInto<cr>", desc="Debugger. Step Into"},
     ["<leader>do"] = {"<cmd>DapStepOver<cr>", desc="Debugger. Step Over"},
     ["<leader>dx"] = {"<cmd>DapStepOut<cr>", desc="Debugger. Step Out"},
+    -- Diff view
+    ["<leader>gd"] = { "<cmd>DiffviewOpen<cr>", desc = "View git diff" },
+    ["<leader>gw"] = { "<cmd>DiffviewClose<cr>", desc = "Close git diff" },
+    ["<leader>ge"] = { "<cmd>DiffviewToggleFiles<cr>", desc = "Toggle file explorer" },
   },
   i = {
     -- type template string
