@@ -68,6 +68,23 @@ return {
     ["<leader>gd"] = { "<cmd>DiffviewOpen<cr>", desc = "View git diff" },
     ["<leader>gw"] = { "<cmd>DiffviewClose<cr>", desc = "Close git diff" },
     ["<leader>ge"] = { "<cmd>DiffviewToggleFiles<cr>", desc = "Toggle file explorer" },
+    -- copy/change/delete word
+    ["cw"] = {"ciw"},
+    ["yw"] = {"yiw"},
+    ["dw"] = {"diw"},
+    ["cW"] = {"ciW"},
+    ["yW"] = {"yiW"},
+    ["dW"] = {"diW"},
+
+    -- go to function top
+    ["<leader>t"] = {"[{", desc = "Go to the top of the curly bracket"},
+
+    -- close buffers
+    ["<leader>ch"] = {"<cmd>BufferLineCloseLeft<cr>", desc = "Close Buffers to the left" },
+    ["<leader>cl"] = {"<cmd>BufferLineCloseRight<cr>", desc = "Close Buffers to the right" },
+
+    -- select all
+    ["<leader>a"] = { "<esc>ggVG", desc = "select all file content" },
   },
   i = {
     -- type template string
