@@ -82,8 +82,8 @@ local config = {
       ["edluffy/hologram.nvim"] = {},
       ["akinsho/toggleterm.nvim"] = { disable = true },
       ["kdheepak/lazygit.nvim"] = {},
-      ["mfussenegger/nvim-dap"] = {},
-      ["rcarriga/nvim-dap-ui"] = {},
+      -- ["mfussenegger/nvim-dap"] = {},
+      -- ["rcarriga/nvim-dap-ui"] = {},
       ["nvim-telescope/telescope-dap.nvim"] = {},
       ["sindrets/diffview.nvim"] = {},
       ["nvim-treesitter/nvim-treesitter-textobjects"] = {},
@@ -172,17 +172,6 @@ local config = {
         -- null_ls.builtins.diagnostics.eslint,
         -- null_ls.builtins.diagnostics.rubocop,
       }
-      -- set up null-ls's on_attach function
-      config.on_attach = function(client)
-        -- NOTE: You can remove this on attach function to disable format on save
-        if client.resolved_capabilities.document_formatting then
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            desc = "Auto format before save",
-            pattern = "<buffer>",
-            callback = vim.lsp.buf.formatting_sync,
-          })
-        end
-      end
       return config -- return final config table
     end,
     treesitter = {
@@ -196,7 +185,7 @@ local config = {
             ["]]"] = "@class.outer",
           },
           goto_next_end = {
-            ["]M"] = "@function.outer",
+            ["]m"] = "@function.outer",
             ["]["] = "@class.outer",
           },
           goto_previous_start = {
@@ -204,31 +193,31 @@ local config = {
             ["[["] = "@class.outer",
           },
           goto_previous_end = {
-            ["[M"] = "@function.outer",
+            ["[m"] = "@function.outer",
             ["[]"] = "@class.outer",
           },
         },
         select = {
           enable = true,
 
-          -- Automatically jump forward to textobj, similar to targets.vim
+          -- automatically jump forward to textobj, similar to targets.vim
           lookahead = true,
 
           keymaps = {
-            -- You can use the capture groups defined in textobjects.scm
+            -- you can use the capture groups defined in textobjects.scm
             ["af"] = "@function.outer",
             ["if"] = "@function.inner",
             ["ac"] = "@class.outer",
             -- you can optionally set descriptions to the mappings (used in the desc parameter of nvim_buf_set_keymap
             ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
           },
-          -- You can choose the select mode (default is charwise 'v')
+          -- you can choose the select mode (default is charwise 'v')
           selection_modes = {
             ['@parameter.outer'] = 'v', -- charwise
             ['@function.outer'] = 'V', -- linewise
             ['@class.outer'] = '<c-v>', -- blockwise
           },
-          -- If you set this to `true` (default is `false`) then any textobject is
+          -- if you set this to `true` (default is `false`) then any textobject is
           -- extended to include preceding xor succeeding whitespace. Succeeding
           -- whitespace has priority in order to act similarly to eg the built-in
           -- `ap`.
@@ -247,11 +236,11 @@ local config = {
     on_attach = function() end,
   },
 
-  -- LuaSnip Options
+  -- Luasnip options
   luasnip = {
-    -- Add paths for including more VS Code style snippets in luasnip
+    -- add paths for including more VS Code style snippets in luasnip
     vscode_snippet_paths = {},
-    -- Extend filetypes
+    -- extend filetypes
     filetype_extend = {
       javascript = { "javascriptreact" },
     },
@@ -259,20 +248,20 @@ local config = {
 
   -- Modify which-key registration
   ["which-key"] = {
-    -- Add bindings
+    -- add bindings
     register_mappings = {
       -- first key is the mode, n == normal mode
       n = {
         -- second key is the prefix, <leader> prefixes
         ["<leader>"] = {
           -- which-key registration table for normal mode, leader prefix
-          -- ["N"] = { "<cmd>tabnew<cr>", "New Buffer" },
+          -- ["n"] = { "<cmd>tabnew<cr>", "New Buffer" },
         },
       },
     },
   },
 
-  -- CMP Source Priorities
+  -- Cmp source Priorities
   -- modify here the priorities of default cmp sources
   -- higher value == higher priority
   -- The value can also be set to a boolean for disabling default sources:
@@ -287,17 +276,38 @@ local config = {
     },
   },
 
+  -- Diagnostics configuration (for vim.diagnostics.config({}))
+  diagnostics = {
+    virtual_text = true,
+    underline = true,
+  },
+
   -- Extend LSP configuration
   lsp = {
-    -- enable servers that you already have installed without lsp-installer
+    -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
     },
-    -- add to the server on_attach function
+    formatting = {
+      format_on_save = true, -- enable or disable auto formatting on save
+      disabled = { -- disable formatting capabilities for the listed clients
+        -- "sumneko_lua",
+      },
+      -- filter = function(client) -- fully override the default formatting function
+      --   return true
+      -- end
+    },
+    -- easily add or disable built in mappings added during LSP attaching
+    mappings = {
+      n = {
+        -- ["<leader>lf"] = false -- disable formatting keymap
+      },
+    },
+    -- add to the global LSP on_attach function
     -- on_attach = function(client, bufnr)
     -- end,
 
-    -- override the lsp installer server-registration function
+    -- override the mason server-registration function
     -- server_registration = function(server, opts)
     --   require("lspconfig")[server].setup(opts)
     -- end,
@@ -305,7 +315,7 @@ local config = {
     -- Add overrides for LSP server settings, the keys are the name of the server
     ["server-settings"] = {
       -- example for addings schemas to yamlls
-      -- yamlls = {
+      -- yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
       --   settings = {
       --     yaml = {
       --       schemas = {
@@ -317,12 +327,6 @@ local config = {
       --   },
       -- },
     },
-  },
-
-  -- Diagnostics configuration (for vim.diagnostics.config({}))
-  diagnostics = {
-    virtual_text = true,
-    underline = true,
   },
 
   -- This function is run last
