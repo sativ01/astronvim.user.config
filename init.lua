@@ -85,6 +85,12 @@ local config = {
       -- ["mfussenegger/nvim-dap"] = {},
       -- ["rcarriga/nvim-dap-ui"] = {},
       ["nvim-telescope/telescope-dap.nvim"] = {},
+      ["mfussenegger/nvim-dap"] = {
+        config = require "user.plugins.dap.config"
+      },
+      ["rcarriga/nvim-dap-ui"] = {
+        config = require "user.plugins.dap-ui.config"
+      },
       ["sindrets/diffview.nvim"] = {},
       ["nvim-treesitter/nvim-treesitter-textobjects"] = {},
       -- You can disable default plugins as follows:
@@ -117,23 +123,18 @@ local config = {
       filesystem = {
         filtered_items = {
           hide_dotfiles = false,
+          hide_gitignored = false,
         }
       }
     },
 
-    ["mfussenegger/nvim-dap"] = {
-      config = require "user.plugins.dap.config"
-    },
-    ["rcarriga/nvim-dap-ui"] = {
-      config = require "user.plugins.dap-ui.config"
-    },
     telescope = {
       extensions = {
         fzf = {
           fuzzy = true, -- false will only do exact matching
           override_generic_sorter = true, -- override the generic sorter
           override_file_sorter = true, -- override the file sorter
-          case_mode = 'respect_case', -- or "ignore_case" or "respect_case"
+          case_mode = "respect_case", -- or "ignore_case" or "respect_case"
           -- the default case_mode is "smart_case"
         },
       },
