@@ -27,6 +27,10 @@ return {
     [",,"] = { '<Esc>A,<Esc>' },
     ["<leader>u"] = { "<cmd>nohlsearch<cr>", desc = "No Highlight" },
 
+    -- Center on scroll nav
+    ["<c-d>"] = {"<c-d>zz"},
+    ["<c-u>"] = {"<c-u>zz"},
+
     -- window navigation
     ["<leader>h"] = { function() sm_sp.move_cursor_left() end, desc = "Move to window on the left" },
     ["<leader>j"] = { function() sm_sp.move_cursor_down() end, desc = "Move to below window" },
@@ -34,12 +38,14 @@ return {
     ["<leader>l"] = { function() sm_sp.move_cursor_right() end, desc = "Move to window on the right" },
     ["<c-w>"] = { "<cmd>close<cr>", desc = "close window" },
     -- open lazygit
-    ["<leader>gg"] = {"<cmd>LazyGit<cr>", desc = "Open Lazygit"},
+    ["<leader>gg"] = { "<cmd>LazyGit<cr>", desc = "Open Lazygit" },
     -- telescope extra search commands
-    ["<leader>gm"] = { function() require("telescope.builtin").git_files({git_command = {"git", "ls-files", "--modified"}}) end, desc = "Git list modified files" },
+    ["<leader>gm"] = { function() require("telescope.builtin").git_files({ git_command = { "git", "ls-files",
+      "--modified" } }) end, desc = "Git list modified files" },
     ["<leader>bf"] = { function() require("telescope.builtin").current_buffer_fuzzy_find() end,
       desc = "Fuzzy search current file" },
     ["<leader>ss"] = { function() require("telescope.builtin").grep_string() end, desc = "Search word under cursor" },
+    ["<leader>se"] = { function() require("telescope.builtin").grep_string({ word_match = "-w" }) end, desc = "Search exact word under cursor" },
     ["<leader>st"] = { function() require("telescope.builtin").colorscheme({ enable_preview = true }) end,
       desc = "Search and apply themes" },
     ["<leader>sp"] = { function() require("telescope.builtin").builtin() end, desc = "Search builtin telescope pickers" },
@@ -53,35 +59,35 @@ return {
     ["-"] = { "<c-x>", desc = "Descrement number" },
     ["+"] = { "<c-a>", desc = "Increment number" },
     -- Treesitter Surfer
-    ["<c-down>"] = { "<cmd>STSSwapDownNormal<cr>", desc = "Swap next tree-sitter object" },
-    ["<c-right>"] = { "<cmd>STSSwapDownNormal<cr>", desc = "Swap next tree-sitter object" },
-    ["<c-up>"] = { "<cmd>STSSwapUpNormal<cr>", desc = "Swap previous tree-sitter object" },
-    ["<c-left>"] = { "<cmd>STSSwapUpNormal<cr>", desc = "Swap previous tree-sitter object" },
+    ["<M-down>"] = { "<cmd>STSSwapDownNormal<cr>", desc = "Swap next tree-sitter object" },
+    ["<M-right>"] = { "<cmd>STSSwapDownNormal<cr>", desc = "Swap next tree-sitter object" },
+    ["<M-up>"] = { "<cmd>STSSwapUpNormal<cr>", desc = "Swap previous tree-sitter object" },
+    ["<M-left>"] = { "<cmd>STSSwapUpNormal<cr>", desc = "Swap previous tree-sitter object" },
     -- Debugging
-    ["<leader>db"] = {"<cmd>DapToggleBreakpoint<cr>", desc="Debugger. Toggle Breakpoint"},
-    ["<leader>dc"] = {"<cmd>DapContinue<cr>", desc="Debugger. Start or Continue"},
-    ["<leader>dt"] = {"<cmd>DapTerminate<cr>", desc="Debugger. Stop debugging"},
-    ["<leader>di"] = {"<cmd>DapStepInto<cr>", desc="Debugger. Step Into"},
-    ["<leader>do"] = {"<cmd>DapStepOver<cr>", desc="Debugger. Step Over"},
-    ["<leader>dx"] = {"<cmd>DapStepOut<cr>", desc="Debugger. Step Out"},
+    ["<leader>db"] = { "<cmd>DapToggleBreakpoint<cr>", desc = "Debugger. Toggle Breakpoint" },
+    ["<leader>dc"] = { "<cmd>DapContinue<cr>", desc = "Debugger. Start or Continue" },
+    ["<leader>dt"] = { "<cmd>DapTerminate<cr>", desc = "Debugger. Stop debugging" },
+    ["<leader>di"] = { "<cmd>DapStepInto<cr>", desc = "Debugger. Step Into" },
+    ["<leader>do"] = { "<cmd>DapStepOver<cr>", desc = "Debugger. Step Over" },
+    ["<leader>dx"] = { "<cmd>DapStepOut<cr>", desc = "Debugger. Step Out" },
     -- Diff view
     ["<leader>gd"] = { "<cmd>DiffviewOpen<cr>", desc = "View git diff" },
     ["<leader>gw"] = { "<cmd>DiffviewClose<cr>", desc = "Close git diff" },
     ["<leader>ge"] = { "<cmd>DiffviewToggleFiles<cr>", desc = "Toggle file explorer" },
     -- copy/change/delete word
-    ["cw"] = {"ciw"},
-    ["yw"] = {"yiw"},
-    ["dw"] = {"diw"},
-    ["cW"] = {"ciW"},
-    ["yW"] = {"yiW"},
-    ["dW"] = {"diW"},
+    ["cw"] = { "ciw" },
+    ["yw"] = { "yiw" },
+    ["dw"] = { "diw" },
+    ["cW"] = { "ciW" },
+    ["yW"] = { "yiW" },
+    ["dW"] = { "diW" },
 
     -- go to function top
-    ["<leader>t"] = {"[{", desc = "Go to the top of the curly bracket"},
+    ["<leader>t"] = { "[{", desc = "Go to the top of the curly bracket" },
 
     -- close buffers
-    ["<leader>ch"] = {"<cmd>BufferLineCloseLeft<cr>", desc = "Close Buffers to the left" },
-    ["<leader>cl"] = {"<cmd>BufferLineCloseRight<cr>", desc = "Close Buffers to the right" },
+    ["<leader>ch"] = { "<cmd>BufferLineCloseLeft<cr>", desc = "Close Buffers to the left" },
+    ["<leader>cl"] = { "<cmd>BufferLineCloseRight<cr>", desc = "Close Buffers to the right" },
 
     -- select all
     ["<leader>a"] = { "<esc>ggVG", desc = "select all file content" },
